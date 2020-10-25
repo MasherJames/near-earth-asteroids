@@ -3,10 +3,6 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
-import Register from "../views/Register.vue";
-import AllAsteroids from "../views/AllAsteroids.vue";
-import SavedAsteroids from "../views/SavedAsteroids.vue";
 
 const routes = [
   {
@@ -17,24 +13,32 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: Login,
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/Login.vue"),
     meta: { requiresGuest: true },
   },
   {
     path: "/register",
     name: "Register",
-    component: Register,
+    component: () =>
+      import(/* webpackChunkName: "register" */ "../views/Register.vue"),
     meta: { requiresGuest: true },
   },
   {
     path: "/all_asteroids",
     name: "AllAsteroids",
-    component: AllAsteroids,
+    component: () =>
+      import(
+        /* webpackChunkName: "allasteroids" */ "../views/AllAsteroids.vue"
+      ),
   },
   {
     path: "/saved_asteroids",
     name: "SavedAsteroids",
-    component: SavedAsteroids,
+    component: () =>
+      import(
+        /* webpackChunkName: "savedasteroids" */ "../views/SavedAsteroids.vue"
+      ),
     meta: { requiresAuth: true },
   },
   {
